@@ -73,6 +73,7 @@ namespace Further
             {
                 sumV += pair.Value;
             }
+            sumV.z = 0;
             return sumV * Time.deltaTime;
         }
     }

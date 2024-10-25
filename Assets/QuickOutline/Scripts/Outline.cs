@@ -12,7 +12,6 @@ using System.Linq;
 using UnityEngine;
 
 [DisallowMultipleComponent]
-
 public class Outline : MonoBehaviour {
   private static HashSet<Mesh> registeredMeshes = new HashSet<Mesh>();
 
@@ -59,7 +58,7 @@ public class Outline : MonoBehaviour {
   [SerializeField]
   private Color outlineColor = Color.white;
 
-  [SerializeField, Range(0f, 10f)]
+  [SerializeField, Range(0f, 50f)]
   private float outlineWidth = 2f;
 
   [Header("Optional")]
