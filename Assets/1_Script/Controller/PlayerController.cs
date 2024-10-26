@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -8,8 +9,16 @@ namespace Further
     public class PlayerController : MonoBehaviour
     {
 
-        [SerializeField] private float baseGravity;
+        [Header("Velocity")]
+        [SerializeField] private float startMoveSpeed;
+        [SerializeField] private float maxMoveSpeed;
+        [SerializeField] private float rotationSpeed;
 
+        [Header("Forces")]
+        [SerializeField] private float boostForce;
+        [SerializeField] private ParticleSystem boostParticle;
+
+        /** Components **/
         private Rigidbody rigid;
 
         private void Awake()
@@ -17,26 +26,53 @@ namespace Further
             rigid = GetComponent<Rigidbody>();
         }
 
+
+        /* */
+        private float vert, horz;
+        private bool isParticle = false;
+
         private void Start()
         {
-
         }
 
-        float vert, horz;
+
         private void Update()
         {
             horz = Input.GetAxisRaw("Horizontal");
             vert = Input.GetAxisRaw("Vertical");
 
+
+
             if (horz == 0 && vert == 0)
             {
+
+                /** Particle **/
+                if (boostParticle.isPlaying)
+                {
+                    isParticle = false;
+                    boostParticle.Stop();
+                }
+
+                /** Forces **/
                 AddForces(-1, new Vector3(0, 0, 0));
             }
             else
             {
-                AddForces(-1, new Vector3(horz, vert, 0) * baseGravity);
-            }
+                /** Rotate **/
+                float angle = -Mathf.Atan2(horz, vert) * Mathf.Rad2Deg;
+                Quaternion targetRotation = Quaternion.Euler(0, 0, angle);
+                transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
 
+                /** Particle */
+                if (!isParticle)
+                {
+                    isParticle = true;
+                    boostParticle.Play();
+                }
+
+                /** Forces **/
+                AddForces(-1, new Vector3(horz, vert, 0) * boostForce);
+            }
 
         }
 
