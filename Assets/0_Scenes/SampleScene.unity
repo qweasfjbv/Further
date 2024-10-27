@@ -257,6 +257,39 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 134862269}
   m_CullTransparentMesh: 1
+--- !u!1 &137511897
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 137511898}
+  m_Layer: 0
+  m_Name: Cameras
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &137511898
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 137511897}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -9.559246, y: -29.058271, z: -8.990929}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1223476904}
+  - {fileID: 963194228}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!21 &197436562
 Material:
   serializedVersion: 8
@@ -614,9 +647,10 @@ GameObject:
   - component: {fileID: 807113484}
   - component: {fileID: 807113485}
   - component: {fileID: 807113486}
-  m_Layer: 0
+  - component: {fileID: 807113487}
+  m_Layer: 8
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -698,11 +732,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: efa79711bc5df1f4c8c17782335b6c34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bgCamera: {fileID: 1223476905}
+  mainCamera: {fileID: 963194228}
   startMoveSpeed: 0
-  maxMoveSpeed: 0
+  maxMoveSpeed: 100
   rotationSpeed: 10
-  boostForce: 5
+  idleRotationSpeed: 10
+  boostForce: 50
   boostParticle: {fileID: 2144206930}
+--- !u!114 &807113487
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 807113482}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d71f7222a5812f3478fa0f33b5e7bd32, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  velocityText: {fileID: 134862271}
+  velocityUnitText: {fileID: 1982530345}
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
@@ -789,11 +840,11 @@ Transform:
   m_GameObject: {fileID: 963194225}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -22.5, z: -10}
+  m_LocalPosition: {x: 9.559246, y: 7.618271, z: -1.0090714}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 137511898}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &990931636 stripped
 GameObject:
@@ -1042,10 +1093,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   planetId: 2
   radius: 20
-  mass: 200
+  mass: 100
   rotateAxis: 70
   rotateSpeed: 30
-  bias: 1
+  bias: 0.3
 --- !u!114 &1059118104
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2344,7 +2395,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1223476904}
   - component: {fileID: 1223476903}
-  - component: {fileID: 1223476902}
   - component: {fileID: 1223476905}
   m_Layer: 0
   m_Name: BGCamera
@@ -2353,14 +2403,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!81 &1223476902
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1223476901}
-  m_Enabled: 1
 --- !u!20 &1223476903
 Camera:
   m_ObjectHideFlags: 0
@@ -2420,12 +2462,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1223476901}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 9.559246, y: 29.058271, z: 8.990929}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 137511898}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1223476905
 MonoBehaviour:
@@ -2439,7 +2481,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69baf84dd602bdd48bbc2a1e8df4af82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseRotateSpeed: 2
+  baseRotateSpeed: 1
 --- !u!1001 &1353174362
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4010,12 +4052,12 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: e37501b27031f7547b80e0ff91fcfbae,
         type: 3}
       propertyPath: m_Layer
-      value: 8
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: e37501b27031f7547b80e0ff91fcfbae,
         type: 3}
       propertyPath: m_TagString
-      value: Player
+      value: Untagged
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -5588,7 +5630,7 @@ GameObject:
   - component: {fileID: 1982530346}
   - component: {fileID: 1982530345}
   m_Layer: 5
-  m_Name: Text_Velocity (1)
+  m_Name: Text_Velocity_Unit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5726,6 +5768,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4545730075028336661, guid: eafb5fe28c005164a92ca42f3f7532a7,
         type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4545730075028336661, guid: eafb5fe28c005164a92ca42f3f7532a7,
+        type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
@@ -5807,6 +5854,11 @@ PrefabInstance:
     - target: {fileID: 4545730075028336663, guid: eafb5fe28c005164a92ca42f3f7532a7,
         type: 3}
       propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4545730075028336663, guid: eafb5fe28c005164a92ca42f3f7532a7,
+        type: 3}
+      propertyPath: moveWithTransform
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4545730075028336663, guid: eafb5fe28c005164a92ca42f3f7532a7,
@@ -6087,6 +6139,5 @@ SceneRoots:
   - {fileID: 732937277}
   - {fileID: 1005984947}
   - {fileID: 1878834233}
-  - {fileID: 1223476904}
-  - {fileID: 963194228}
   - {fileID: 807113483}
+  - {fileID: 137511898}

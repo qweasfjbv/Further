@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.UIElements;
 
 namespace Further
@@ -9,10 +10,15 @@ namespace Further
     public class PlayerController : MonoBehaviour
     {
 
+        [Header("Cameras")]
+        [SerializeField] private BGController bgCamera;
+        [SerializeField] private Transform mainCamera;
+
         [Header("Velocity")]
         [SerializeField] private float startMoveSpeed;
         [SerializeField] private float maxMoveSpeed;
         [SerializeField] private float rotationSpeed;
+        [SerializeField] private float idleRotationSpeed;
 
         [Header("Forces")]
         [SerializeField] private float boostForce;
@@ -45,6 +51,8 @@ namespace Further
 
             if (horz == 0 && vert == 0)
             {
+                /** Rotate **/
+                transform.Rotate(new Vector3(0, 0, idleRotationSpeed * Time.deltaTime));
 
                 /** Particle **/
                 if (boostParticle.isPlaying)
@@ -74,11 +82,16 @@ namespace Further
                 AddForces(-1, new Vector3(horz, vert, 0) * boostForce);
             }
 
+            UpdateCameras();
         }
 
         private void FixedUpdate()
         {
             rigid.velocity += CalcForce();
+            if (rigid.velocity.sqrMagnitude > maxMoveSpeed * maxMoveSpeed)
+            {
+                rigid.velocity = rigid.velocity * (maxMoveSpeed / rigid.velocity.magnitude);
+            }
         }
 
         // Store all the affected gravities
@@ -111,6 +124,14 @@ namespace Further
             }
             sumV.z = 0;
             return sumV * Time.deltaTime;
+        }
+
+        private float verticalCameraOffset;
+        private void UpdateCameras()
+        {
+            verticalCameraOffset = rigid.velocity.y / maxMoveSpeed;
+            mainCamera.transform.position = transform.position + new Vector3(0, verticalCameraOffset * 15, -20);
+            bgCamera.SetSpeed(-rigid.velocity.y, maxMoveSpeed);
         }
     }
 }

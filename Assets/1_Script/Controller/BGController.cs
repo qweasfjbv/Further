@@ -23,13 +23,13 @@ namespace Further
 
         void Update()
         {
-            degree += Time.deltaTime * baseRotateSpeed;
+            degree += Time.deltaTime * rotateSpeed;
             transform.rotation = Quaternion.Euler(degree, 0, 0);
         }
 
         public void SetSpeed(float speed, float maxSpeed)
         {
-            rotateSpeed = speed * maxSpeed * baseRotateSpeed;
+            rotateSpeed = speed / maxSpeed * baseRotateSpeed;
         }
     }
 
