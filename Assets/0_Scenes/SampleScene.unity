@@ -648,6 +648,7 @@ GameObject:
   - component: {fileID: 807113485}
   - component: {fileID: 807113486}
   - component: {fileID: 807113487}
+  - component: {fileID: 807113488}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -718,7 +719,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 56
   m_CollisionDetection: 0
 --- !u!114 &807113486
 MonoBehaviour:
@@ -738,7 +739,7 @@ MonoBehaviour:
   maxMoveSpeed: 100
   rotationSpeed: 10
   idleRotationSpeed: 10
-  boostForce: 50
+  boostForce: 20
   boostParticle: {fileID: 2144206930}
 --- !u!114 &807113487
 MonoBehaviour:
@@ -754,6 +755,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   velocityText: {fileID: 134862271}
   velocityUnitText: {fileID: 1982530345}
+--- !u!114 &807113488
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 807113482}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a7e366e48f24344d9d3b4f04b19681e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  missilePrefab: {fileID: 2464626427839406400, guid: e17a3d4008e8c894283d8deb3bce6746,
+    type: 3}
+  missileInitCount: 5
+  missileLifetime: 5
+  missileVelocity: 50
+  fireCooltime: 0.3
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
