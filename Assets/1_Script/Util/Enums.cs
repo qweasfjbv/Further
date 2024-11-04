@@ -15,6 +15,7 @@ namespace Further
         MeteorCount,
         MagnetSize,
         BulletBoundCount,
+        MaxSpeed
     };
 
 }

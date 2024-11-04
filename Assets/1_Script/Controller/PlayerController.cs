@@ -1,8 +1,5 @@
 using System.Collections.Generic;
-using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
-using UnityEngine.UI;
-using UnityEngine.UIElements;
 
 namespace Further
 {
@@ -23,6 +20,21 @@ namespace Further
         [Header("Forces")]
         [SerializeField] private float boostForce;
         [SerializeField] private ParticleSystem boostParticle;
+
+        private int health;
+        private float gravityWeight;
+        private float boostAttack;
+
+        /** Properties **/
+        public float BoostForce { get=>boostForce; set=>boostForce = value; }
+        public int Health { get => health; set => health = value; }
+        public float GravityWeight { get => gravityWeight; set => gravityWeight = value; }
+        public float BoostAttack { get => boostAttack; set => boostAttack = value; }
+        public float MaxMoveSpeed { get => maxMoveSpeed; set => maxMoveSpeed = value; }
+        public float MainCameraSize { 
+            get => mainCamera.GetComponent<Camera>().orthographicSize;
+            set => mainCamera.GetComponent<Camera>().orthographicSize = value;
+        }
 
         /** Components **/
         private Rigidbody rigid;

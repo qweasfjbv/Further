@@ -12,6 +12,11 @@ namespace Further.Managers
             upgradeData = CSVReader.Read("Data/Excel/UpgradeData");
         }
 
+        public int GetUpgradeTypeCount()
+        {
+            return upgradeData.Count;
+        }
+
         // Unboxing to Int or Float needed
         public object GetUpgradeData(PlayerStatType type, int level)
         {

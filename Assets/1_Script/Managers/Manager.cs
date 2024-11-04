@@ -12,7 +12,7 @@ namespace Further.Managers
 
         private void Awake()
         {
-            if (instance == null)
+            if (instance != null)
             {
                 Destroy(this);
             }
@@ -23,11 +23,16 @@ namespace Further.Managers
             }
 
             _data.Init();
+
+            _upgrade.Init();
         }
         #endregion
 
-        DataManager _data = new DataManager();
+        private DataManager _data = new DataManager();
+        private UpgradeManager _upgrade = new UpgradeManager();
+
         public static DataManager Data { get { return Instance._data; } }
+        public static UpgradeManager Upgrade { get { return Instance._upgrade; } }
 
     }
 }

@@ -10,6 +10,15 @@ public class PlayerWeaponController : MonoBehaviour
     [SerializeField] private float missileVelocity;
     [SerializeField] private float fireCooltime;
 
+    private float missileSize;
+    private int missileBoundCount;
+    private int missileCount;
+
+    public float FireCooltime { get => fireCooltime; set => fireCooltime = value; }
+    public float MissileSize { get => missileSize; set => missileSize = value; }
+    public int MissileBoundCount { get => missileBoundCount; set => missileBoundCount = value; }
+    public int MissileCount { get => missileCount; set=> missileCount = value; }    
+
     private Transform poolRoot = null;
     private bool isOnMissileCooltime = false;
 
