@@ -339,7 +339,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &239000626
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1157,6 +1157,7 @@ MonoBehaviour:
   missilePrefab: {fileID: 2464626427839406400, guid: e17a3d4008e8c894283d8deb3bce6746,
     type: 3}
   missileInitCount: 5
+  missileShootCount: 2
   missileLifetime: 5
   missileVelocity: 50
   fireCooltime: 0.3

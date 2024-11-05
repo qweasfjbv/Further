@@ -13,7 +13,8 @@ namespace Further.Props
             originalRoot = root;
             transform.parent = null;
             transform.position = root.position;
-            transform.rotation = root.rotation; 
+            // TODO : adjust rotation
+            transform.rotation = Quaternion.Euler(root.rotation * (velocity - root.parent.GetComponent<Rigidbody>().velocity)); 
             gameObject.SetActive(true);
 
             GetComponent<Rigidbody>().velocity = velocity;
@@ -26,6 +27,8 @@ namespace Further.Props
             transform.parent = originalRoot;
         }
 
+
+        // TODO : Collision Detection <- Attach Planet Stat on planet object
         private void OnEnable()
         {
 

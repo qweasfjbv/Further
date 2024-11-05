@@ -6,6 +6,7 @@ public class PlayerWeaponController : MonoBehaviour
     [Header("Missile Settings")]
     [SerializeField] private GameObject missilePrefab;
     [SerializeField] private int missileInitCount;
+    [SerializeField] private int missileShootCount;
     [SerializeField] private float missileLifetime;
     [SerializeField] private float missileVelocity;
     [SerializeField] private float fireCooltime;
@@ -46,7 +47,7 @@ public class PlayerWeaponController : MonoBehaviour
         if (!isOnMissileCooltime)
         {
             isOnMissileCooltime = true;
-            FireMissile();
+            FireMissile(missileShootCount);
             Invoke(nameof(ReleaseFire), fireCooltime);
         }
     }
@@ -56,10 +57,19 @@ public class PlayerWeaponController : MonoBehaviour
         isOnMissileCooltime = false;
     }
 
-    private void FireMissile()
+    private void FireMissile(int count)
     {
-        var tmpMisisle = GetOrGenerateMissile();
-        tmpMisisle.OnFire(poolRoot, missileLifetime, GetComponent<Rigidbody>().velocity + transform.up * missileVelocity);
+        float spreadAngle = 30f;
+        float angleStep = spreadAngle / (count - 1);
+
+        for (int i = 0; i < count; i++)
+        {
+            float angle = (i - (count - 1) / 2f) * angleStep;
+            Debug.Log(angle);
+            var tmpMissile = GetOrGenerateMissile();
+            Vector3 direction = Quaternion.Euler(0, 0, angle) * transform.up;
+            tmpMissile.OnFire(poolRoot, missileLifetime, GetComponent<Rigidbody>().velocity + direction * missileVelocity);
+        }
 
     }
 
